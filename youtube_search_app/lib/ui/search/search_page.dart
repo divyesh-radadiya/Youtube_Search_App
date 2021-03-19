@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:youtube_search_app/data/model/search/model_search.dart';
+import 'package:youtube_search_app/ui/detail/detail_page.dart';
 import 'package:youtube_search_app/ui/search/bloc/search_bloc.dart';
 import 'package:kiwi/kiwi.dart' as kiwi;
 import 'package:youtube_search_app/ui/search/components/centered_message.dart';
@@ -91,7 +92,15 @@ class _SearchPageState extends State<SearchPage> {
   Widget _buildVideoListItem(SearchItem searchItem) {
     return GestureDetector(
       child: _buildVideoListItemCard(searchItem.snippet),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => DetailPage(
+                    videoId: searchItem.id.videoId,
+                  )),
+        );
+      },
     );
   }
 
